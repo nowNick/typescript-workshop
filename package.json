@@ -1,0 +1,43 @@
+{
+  "name": "@mknapik/typescript-workshop",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">= 8.9",
+    "npm": ">= 5.6"
+  },
+  "main": "src/index.js",
+  "repository": "https://github.com/mknapik/typescript-workshop",
+  "author": "Michał Knapik",
+  "license": "Apache-2.0",
+  "private": false,
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "compile": "tsc -p .",
+    "compile:watch": "tsc --watch -p ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^22.1.1",
+    "@types/node": "^9.4.0",
+    "jest": "^22.1.4",
+    "nodemon": "^1.14.12",
+    "ts-jest": "^22.0.2",
+    "typescript": "^2.7.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

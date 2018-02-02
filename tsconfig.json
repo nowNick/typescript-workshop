@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@ws01/*": [
+        "src/ws01/*"
+      ],
+      "*": ["typings"]
+    },
+    "baseUrl": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "typeRoots": ["./typings", "node_modules/@types"],
+    "lib": [
+      "es2016"
+    ],
+    "allowSyntheticDefaultImports": false
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
