@@ -43,21 +43,10 @@ export function Option<T> (value?: T | null): IOption<T> {
 
 const returnNone = () => None
 
-function makeNone() {
-  const self: any = {}
-
-  self.get = () => undefined
-  self.isDefined = () => false
-  self.map = returnNone
-  self.orElse = (alt: Function) => alt()
-
-  return self as INone
-}
-
 export const None: INone = {
   get: () => undefined,
   isDefined: () => false,
   map: returnNone,
   filter: returnNone,
-  orElse: returnNone
+  orElse: (alt: Function) => alt()
 }

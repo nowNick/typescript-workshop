@@ -7,7 +7,7 @@ describe('Option', () => {
   describe('construct', () => {
     subject(() => Option(get('value')))
 
-    function itBehavesLikeNone() {
+    function itBehavesLikeNone () {
       it('stores nothing', () => {
         expect(subject().get()).toEqual(undefined)
       })
@@ -59,7 +59,7 @@ describe('Option', () => {
   describe('map', () => {
     subject(() => get('option').map(get('square')))
 
-    def('square', () => i => i*i)
+    def('square', () => (i: number) => i * i)
 
     context('when None', () => {
       def('option', () => None)
@@ -76,7 +76,28 @@ describe('Option', () => {
 
       it('applies function to value', () => {
         expect(subject().get()).toEqual(get('expected'))
+      })
+    })
+  })
 
+  describe('orElse', () => {
+    subject(() => get('option').orElse(() => get('else')))
+
+    def('else', () => Some('asd'))
+
+    context('when option is None', () => {
+      def('option', () => None)
+
+      it('fall backs', () => {
+        expect(subject()).toEqual(get('else'))
+      })
+    })
+
+    context('when option is Some', () => {
+      def('option', () => Some('qwe'))
+
+      it('fall backs', () => {
+        expect(subject()).toEqual(get('option'))
       })
     })
   })

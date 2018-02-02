@@ -21,9 +21,4 @@ export interface None extends Option<never> {
   isDefined(): false
 
   get(): undefined
-
-  map(): None
-  filter(fn: any): None
-  orElse(fn: any): None
-  // getOrElse<V>(alternative: V): V
 }
