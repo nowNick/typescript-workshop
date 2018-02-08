@@ -1,3 +1,4 @@
+///<reference path="../../node_modules/@types/jest/index.d.ts"/>
 import { None, Option, Some } from '../../src/ws01/option'
 import { def, get, subject } from '../lazy'
 
