@@ -1,8 +1,5 @@
 ///<reference types="jest" />
-import { map } from '../../src/ws01/collections'
-import { def, get, subject } from '../lazy'
-
-const context = describe
+import { map } from '@ws01/collections'
 
 describe('map', () => {
   describe('when mapping numbers', () => {
