@@ -6,7 +6,7 @@ import { identity, List, ListIterator, Mapper } from '../common'
 export function flow<A, B> (a: Mapper<A, B>): (collection: List<A>) => List<B>
 export function flow<A, B, C> (a: Mapper<A, B>, b: Mapper<B, C>): (collection: List<A>) => List<C>
 export function flow<A, B, C, D> (a: Mapper<A, B>, b: Mapper<B, C>, c: Mapper<C, D>): (collection: List<A>) => List<D>
-export function flow<A, B, C, D, E> (a: Mapper<A, B>, b: Mapper<B, C>, c: Mapper<C, D>, d: Mapper<D, E>): (collection: List<A>) => List<E>
+export function flow<A, B, C, D, E> (a: Mapper<A, B>, b: Mapper<B, C>, c: Mapper<C, D>, d: Mapper<D,  E>): (collection: List<A>) => List<E>
 export function flow<A, B, C, D, E> (a: Mapper<A, B>, b?: Mapper<B, C>, c?: Mapper<C, D>, d?: Mapper<D, E>): (collection: List<A>) => List<B | C | D | E> {
   // return collection => [a, b, c, d].reduce((acc, e) => {
   //   return ((e || identity) as any)(acc)

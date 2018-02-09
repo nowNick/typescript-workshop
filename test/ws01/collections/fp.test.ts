@@ -1,8 +1,5 @@
 ///<reference types="jest" />
-import { map, flow } from '../../../src/ws01/collections/fp'
-import { def, get, subject } from '../../lazy'
-
-const context = describe
+import { map, flow } from '@ws01/collections/fp'
 
 describe('map', () => {
   it('maps all values', () => {
