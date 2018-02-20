@@ -1,5 +1,5 @@
-///<reference path="../../node_modules/@types/jest/index.d.ts"/>
-import { None, Option, Some } from '../../src/ws01/option'
+///<reference types="jest" />
+import { None, Option, Some } from '@ws02/option'
 import { def, get, subject } from '../lazy'
 
 const context = describe

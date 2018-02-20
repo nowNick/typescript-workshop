@@ -13,8 +13,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --no-cache",
+    "test:watch": "npm run test -- --watch",
     "compile": "tsc -p .",
     "compile:watch": "tsc --watch -p ."
   },
@@ -31,6 +31,7 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
+    "moduleDirectories": ["node_modules"],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
     "moduleFileExtensions": [
       "ts",
@@ -39,6 +40,10 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "moduleNameMapper": {
+      "@ws([0-9]{2})/(.*)": "<rootDir>/src/ws$1/$2",
+      "@test/ws([0-9]{2})/(.*)": "<rootDir>/test/ws$1/$2"
+    }
   }
 }

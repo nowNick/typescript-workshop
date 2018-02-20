@@ -1,5 +1,5 @@
 ///<reference types="jest" />
-import { flow, map, reduce } from '../../../src/ws01/collections/fp'
+import { flow, map, reduce } from '@ws01/collections/fp'
 
 const context = describe
 const pow = (n: number) => n * n

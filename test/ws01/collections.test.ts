@@ -1,5 +1,5 @@
 ///<reference types="jest" />
-import { filter, map, reduce } from '../../src/ws01/collections'
+import { filter, map, reduce } from '@ws01/collections'
 
 const context = describe
 
