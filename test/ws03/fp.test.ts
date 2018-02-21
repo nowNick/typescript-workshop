@@ -1,22 +1,67 @@
+import { def, get, subject } from '../lazy'
+import { curry, partial } from '@ws03/fp'
 
-function sum(a: number, b: number, c: number) {
-  return a + b + c
-}
+const context = describe
 
-function sumargs(...args: number[]) {
-  return args.reduce((a, b) => a + b)
-}
+const increment = (a: number) => a + 1
+const sum = (a: number, b: number) => a + b
+const randomNumberGenerator = () => 4
+const concat = (a: string, b: string, c: string) => [a, b, c].join(',')
 
-function concat3(a: string, b: string, c: string) {
-  return a + b + c
-}
+describe('fp', () => {
+  describe('curry', () => {
+    subject(() => curry(get('function')))
 
-const concat4 = (a: string, b: string, c: string, d: string) => {
-  return a + b + c + d
-}
+    context('when transforming void function', () => {
+      def('function', () => randomNumberGenerator)
 
-describe('nothing', () => {
-  it('works', () => {
-    expect(true).toEqual(true)
+      it('does nothing', () => {
+        expect(subject()).toEqual(get('function')())
+      })
+    })
+
+    context('when transforming a function with one argument', () => {
+      def('function', () => increment)
+
+      it('accepts one argument', () => {
+        expect(subject()(1)).toEqual(get('function')(1))
+      })
+    })
+
+    context('when transforming a function with two arguments', () => {
+      def('function', () => sum)
+
+      it('accepts single argument twice', () => {
+        expect(subject()(1)(2)).toEqual(get('function')(1, 2))
+      })
+    })
+  })
+
+  describe.skip('partial', () => {
+    subject((...args: any[]) => partial(get('function'), ...args))
+
+    context('when transforming void function', () => {
+      def('function', () => randomNumberGenerator)
+
+      it('does nothing', () => {
+        expect(subject()).toEqual(get('function')())
+      })
+    })
+
+    context('when transforming a function with one argument', () => {
+      def('function', () => increment)
+
+      it('accepts one argument', () => {
+        expect(subject(1)).toEqual(get('function')(1))
+      })
+    })
+
+    context('when transforming a function with two arguments', () => {
+      def('function', () => sum)
+
+      it('accepts single argument twice', () => {
+        expect(subject(1)(2)).toEqual(get('function')(1, 2))
+      })
+    })
   })
 })
