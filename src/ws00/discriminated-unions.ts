@@ -22,9 +22,6 @@ interface Triangle {
 
 type Shape = Square | Rectangle | Circle | Triangle
 
-function throwError(): never {
-  throw new Error('unsupported option')
-}
 function area (s: Shape): number {
   switch (s.kind) {
     case "square":
@@ -33,7 +30,5 @@ function area (s: Shape): number {
       return s.height * s.width
     case "circle":
       return Math.PI * s.radius ** 2
-    default:
-      return throwError()
   }
 }

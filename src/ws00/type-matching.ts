@@ -78,12 +78,8 @@ const apiResponse: JSONAPI = {
   }]
 }
 
-function isArray (data: Resource | Resource[]): data is Resource[] {
-  return Array.isArray(data)
-}
-
 function deserialize (api: JSONAPI): DTO | DTO[] {
-  if (isArray(api.data)) {
+  if (???) {
     const included = (api.included || []).map(deserializeResource)
     const data = api.data.map(deserializeResource)
     return data.concat(included)
@@ -95,15 +91,12 @@ function deserialize (api: JSONAPI): DTO | DTO[] {
 function deserializeResource (resource: Resource): DTO {
   switch (resource.type) {
     case 'users': {
-      const {attributes: {email, firstName, lastName}, id} = resource
       return {id, email, firstName, lastName}
     }
     case 'roles': {
-      const {attributes: {name}, id} = resource
       return {id, name}
     }
     case 'posts': {
-      const {attributes: {content, title}, id} = resource
       return {id, content, title}
     }
   }

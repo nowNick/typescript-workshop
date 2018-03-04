@@ -7,13 +7,4 @@ export interface Queue<T> {
 }
 
 export class Queue<T> implements Queue<T> {
-  _store: T[] = []
-
-  push (val: T) {
-    this._store.push(val)
-  }
-
-  pop (): T | undefined {
-    return this._store.shift()
-  }
 }
