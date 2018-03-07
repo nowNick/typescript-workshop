@@ -17,11 +17,9 @@ union = 'asd'
 
 /// TS figures out the type of an array
 const arrayOfNumbers = [2, 3, 4]
-const arrayOfNumbers1: number[] = arrayOfNumbers
 
 /// It is able to figure out the type when multiple types are used
 const arrayOfUnion = [2, 'str', {}]
-const arrayOfUnion1: (number | string | {})[] = arrayOfUnion
 
 /// If the number of elements in an array is known upfront
 // then a tuple instead of an array can be used.
@@ -44,7 +42,6 @@ let numberCanBeNull: number | null | undefined = 2
 numberCanBeNull = nullValue
 numberCanBeNull = undefinedValue
 const bar = (canBeNull: number | null) => canBeNull
-const bar1: (canBeNull: (number | null)) => (number | null) = bar
 
 type Optional = (optional?: number) => any
 const optionalParameter: Optional = (optional?: number) => null
@@ -55,17 +52,20 @@ interface Options {
   color?: string
   size?: number
 }
-const config  = (options: Options) => {}
+
+const config = (options: Options) => {}
 // config({colour: 'blue', size: 2})
+
+
+const options = {colour: 'blue', size: 2}
+config(options)
 
 /// TS infers the return type of a function
 const getRandomNumber = () => 4
 const randomNumber = getRandomNumber()
-const randomNumber1: number = randomNumber
 
 /// TS infers the lack of return type as well
-const forgotReturn = () => { 4 }
-const forgotReturn1: () => void = forgotReturn
+function forgotReturn () { 4 }
 
 try {
 
