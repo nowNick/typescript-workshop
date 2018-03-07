@@ -25,3 +25,17 @@ Validate your environment is setup correctly by running a test suite:
 ```bash
 yarn test
 ```
+
+## Development
+
+To run the compiler in a watch mode:
+
+```bash
+yarn run compile:watch
+```
+
+To run the tests in a watch mode:
+
+```bash
+yarn run test:watch
+```
