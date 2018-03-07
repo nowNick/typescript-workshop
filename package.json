@@ -31,7 +31,9 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "moduleDirectories": ["node_modules"],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
     "moduleFileExtensions": [
       "ts",

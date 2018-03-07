@@ -33,6 +33,8 @@ function area (s: Shape): number {
       return s.height * s.width
     case "circle":
       return Math.PI * s.radius ** 2
+    case "triangle":
+      return s.base * s.height / 2
     default:
       return throwError()
   }
