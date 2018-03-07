@@ -46,13 +46,21 @@ describe('distance', () => {
 })
 
 describe('add', () => {
-  it('adds all vectors', () => {
-    const a: [number, number, number] = [0, 0, 0]
-    const b: Point = [3, 3, 3]
-    const v0 = vector(a, b)
-    const v1: [number, number, number] = [1, 2, 3]
-    const v2: Vector = [2,3,4]
+  context('when multiple vectors passed', () => {
+    it('adds all vectors', () => {
+      const a: [number, number, number] = [0, 0, 0]
+      const b: Point = [3, 3, 3]
+      const v0 = vector(a, b)
+      const v1: [number, number, number] = [1, 2, 3]
+      const v2: Vector = [2, 3, 4]
 
-    expect(add(v0, v1, v2)).toEqual([0, 2, 4])
+      expect(add(v0, v1, v2)).toEqual([0, 2, 4])
+    })
+  })
+
+  context('when no vectors passed', () => {
+    it('returns vector 0', () => {
+      expect(add()).toEqual([0, 0, 0])
+    })
   })
 })

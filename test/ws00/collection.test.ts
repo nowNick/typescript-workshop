@@ -10,13 +10,13 @@ describe('timesA', () => {
   context('looses type', () => {
     context('when passing 0', () => {
       it('returns empty array', () => {
-        const subject = timesB(0, (i: number) => ({a: 'a'}))
+        const subject = timesA(0, (i: number) => ({a: 'a'}))
         expect(subject).toEqual([])
       })
 
       it('does not execute', () => {
         const stub = jest.fn()
-        const subject = timesB(0, (i: number) => stub())
+        const subject = timesA(0, (i: number) => stub())
         expect(stub).not.toHaveBeenCalled()
       })
     })
@@ -36,7 +36,7 @@ describe('timesA', () => {
 
       it('executes', () => {
         const stub = jest.fn()
-        const subject = timesB(2, (i: number) => stub())
+        const subject = timesA(2, (i: number) => stub())
         expect(stub).toHaveBeenCalledTimes(2)
       })
     })
