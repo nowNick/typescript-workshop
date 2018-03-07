@@ -7,25 +7,72 @@ const isEven = (n: number) => n % 2 === 0
 const sum = (a: number, b: number, idx: number) => a + b
 
 describe('timesA', () => {
-  it('looses type', () => {
-    type foobar = 'bs'
-    /// incorrect type in anonymous function
-    const subject = timesA(2, (i: foobar) => {
-      // console.log(typeof i, i)
-      return {a: 'a'}
+  context('looses type', () => {
+    context('when passing 0', () => {
+      it('returns empty array', () => {
+        const subject = timesB(0, (i: number) => ({a: 'a'}))
+        expect(subject).toEqual([])
+      })
+
+      it('does not execute', () => {
+        const stub = jest.fn()
+        const subject = timesB(0, (i: number) => stub())
+        expect(stub).not.toHaveBeenCalled()
+      })
     })
-    expect(subject).toEqual([{a: 'a'}, {a: 'a'}])
-    // subject[0]. ... no syntax prediction
-    expect(subject[0].a).toEqual('a')
+
+    context('when passing non zero value', () => {
+      it('returns results', () => {
+        type foobar = 'bs'
+        /// incorrect type in anonymous function
+        const subject = timesA(2, (i: number) => {
+          // console.log(typeof i, i)
+          return {a: 'a'}
+        })
+        expect(subject).toEqual([{a: 'a'}, {a: 'a'}])
+        // subject[0]. ... no syntax prediction
+        expect(subject[0].a).toEqual('a')
+      })
+
+      it('executes', () => {
+        const stub = jest.fn()
+        const subject = timesB(2, (i: number) => stub())
+        expect(stub).toHaveBeenCalledTimes(2)
+      })
+    })
+
   })
 })
 
 describe('timesB', () => {
-  it('retains the type', () => {
-    const subject = timesB(2, (i: number) => ({a: 'a'}))
-    const subject1: { a: string }[] = subject
-    expect(subject).toEqual([{a: 'a'}, {a: 'a'}])
-    expect(subject[0].a).toEqual('a')
+  context('retains the type', () => {
+    context('when passing 0', () => {
+      it('returns empty array', () => {
+        const subject = timesB(0, (i: number) => ({a: 'a'}))
+        expect(subject).toEqual([])
+      })
+
+      it('does not execute', () => {
+        const stub = jest.fn()
+        const subject = timesB(0, (i: number) => stub())
+        expect(stub).not.toHaveBeenCalled()
+      })
+    })
+
+    context('when passing non zero value', () => {
+      it('returns results', () => {
+        const subject = timesB(2, (i: number) => ({a: 'a'}))
+        const subject1: { a: string }[] = subject
+        expect(subject).toEqual([{a: 'a'}, {a: 'a'}])
+        expect(subject[0].a).toEqual('a')
+      })
+
+      it('executes', () => {
+        const stub = jest.fn()
+        const subject = timesB(2, (i: number) => stub())
+        expect(stub).toHaveBeenCalledTimes(2)
+      })
+    })
   })
 })
 
