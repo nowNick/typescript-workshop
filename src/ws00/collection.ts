@@ -6,7 +6,7 @@ export function timesB<T> (n: number, iteratee: (i: number) => T): T[] {
 }
 
 
-function head<T> (t: T[]): T | undefined {
+export function head<T> (t: T[]): T | undefined {
   const [head, ...tail] = t
   return head
 }
