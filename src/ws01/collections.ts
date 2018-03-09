@@ -34,13 +34,24 @@ export function filter<T> (collection: List<T>, iteratee: Mapper<T, boolean>): L
 export function reduce<T> (collection: List<T>, reducer: Reducer<T, T>): T
 export function reduce<T, K> (collection: List<T>, reducer: Reducer<T, K>, initial: K): K
 export function reduce<T, K> (collection: List<T>, reducer: Reducer<T, K>, initial?: K): K {
-  if (initial === undefined && collection.length === 0) {
-    throw new TypeError('Reduce of empty array with no initial value')
+  function rreduce(collection: List<T>, previous: K, index: number): K {
+    if(collection.length === 0) {
+      return previous
+    } else {
+      const [head, ...tail] = collection
+      const next = reducer(previous, head, index)
+      return rreduce(tail, next, index + 1)
+    }
   }
-  let result = initial || collection[0] as any as K
-  for (let i = initial ? 0 : 1; i < collection.length; ++i) {
-    const e = collection[i]
-    result = reducer(result, e, i)
+
+  if(initial === undefined) {
+    if(collection.length === 0) {
+      throw new TypeError('Reduce of empty array with no initial value')
+    } else {
+      const [head, ...tail] = collection
+      return rreduce(tail, head as any as K, 1)
+    }
+  } else {
+    return rreduce(collection, initial, 0)
   }
-  return result
 }
