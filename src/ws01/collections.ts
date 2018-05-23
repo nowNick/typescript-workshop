@@ -1,5 +1,5 @@
 import { List, Mapper, Reducer } from './collections/common'
-import { head, tail } from '@ws00/collection'
+import { head, tail } from '../ws00/collection'
 
 export function map<T, K> (collection: List<T>, iteratee: Mapper<T, K>): List<K> {
   function rmap (collection: List<T>, iteratee: Mapper<T, K>, index: number = 0): List<K> {

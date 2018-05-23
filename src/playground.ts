@@ -3,14 +3,14 @@ import { flow2 } from '@ws01/collections/fp/flow'
 
 console.log(map((n: number) => n * n)([2]))
 
-console.log(flow(
+console.log(flow2(
   map((a: number) => a.toString()),
   map(a => parseInt(a, 10)),
   map(a => a.toString()),
   map(a => a.length)
 )([2, 3]))
 
-console.log(flow(
+console.log(flow2(
   map((a: number) => a.toString()),
   filter(s => s.length >= 2),
   map(s => parseInt(s, 10))
@@ -22,7 +22,7 @@ const join = (a: number[], b: number[], idx: number) => ([] as number[]).concat(
 
 const collection: number[][] = [[1, 2], [1, 2], [2, 5], [3, 3]]
 
-console.log(flow(
+console.log(flow2(
   map(map(pow)),
   reduce(join, []),
   map((t: number) => t % 2 === 0),
