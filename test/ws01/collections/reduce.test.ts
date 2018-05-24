@@ -1,5 +1,5 @@
 ///<reference types="jest" />
-import { reduce } from '@ws01/collections/fp'
+import { reduce } from '@ws01/collections'
 
 const context = describe
 
@@ -10,14 +10,14 @@ describe('reduce', () => {
   context('when initial value is not provided', () => {
     context('when collection is empty', () => {
       it('fails', () => {
-        expect(() => reduce(sum)([])).toThrowError(TypeError)
+        expect(() => reduce([], sum)).toThrowError(TypeError)
       })
     })
 
     context('when collection is not empty', () => {
       it('uses first element as initial value', () => {
         const collection = [1, 1, 2, 3, 5, 8]
-        expect(reduce(sum)(collection)).toEqual(20)
+        expect(reduce(collection, sum)).toEqual(20)
       })
     })
   })
@@ -26,14 +26,14 @@ describe('reduce', () => {
     context('when collection is empty', () => {
       it('returns initial value', () => {
         const initialValue = -1
-        expect(reduce(sum, initialValue)([])).toEqual(initialValue)
+        expect(reduce([], sum, initialValue)).toEqual(initialValue)
       })
     })
 
     context('when collection is not empty', () => {
       it('uses first element as initial value', () => {
         const collection = [1, 1, 2, 3, 5, 8]
-        expect(reduce(sum, -1)(collection)).toEqual(19)
+        expect(reduce(collection, sum, -1)).toEqual(19)
       })
     })
   })
