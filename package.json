@@ -16,7 +16,8 @@
     "test": "jest --no-cache",
     "test:watch": "npm run test -- --watch",
     "compile": "tsc -p .",
-    "compile:watch": "tsc --watch -p ."
+    "compile:watch": "tsc --watch -p .",
+    "node": "ts-node -r tsconfig-paths/register"
   },
   "dependencies": {},
   "devDependencies": {
@@ -25,6 +26,8 @@
     "jest": "^22.1.4",
     "nodemon": "^1.14.12",
     "ts-jest": "^22.0.2",
+    "ts-node": "^6.0.5",
+    "tsconfig-paths": "^3.3.2",
     "typescript": "^2.7.1"
   },
   "jest": {

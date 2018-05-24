@@ -1,5 +1,5 @@
 export interface Curry {
-  <X>(fn: () => X): () => X
+  // <X>(fn: () => X): () => X // is it ok with curry math?
   <A, X>(fn: (a: A) => X): (a: A) => X
   <A, B, X>(fn: (a: A, b: B) => X): (a: A) => (b: B) => X
   <A, B, C, X>(fn: (a: A, b: B, c: C) => X): (a: A) => (b: B) => (c: C) => X
