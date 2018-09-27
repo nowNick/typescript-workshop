@@ -24,8 +24,12 @@ export class _Some<T> implements IOption<T> {
     return fn(this.value) ? this : None
   }
 
-  orElse (alternative: () => IOption<T>) {
+  orElse (alternative: () => T) {
     return this
+  }
+
+  isOption (): true {
+    return true
   }
 }
 
@@ -48,5 +52,6 @@ export const None: INone = {
   isDefined: () => false,
   map: returnNone,
   filter: returnNone,
-  orElse: (alt: Function) => alt()
+  orElse: <T>(alt: () => T) => Option(alt()),
+  isOption: () => true
 }
