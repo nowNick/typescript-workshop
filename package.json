@@ -18,7 +18,9 @@
     "compile": "tsc -p .",
     "compile:watch": "tsc --watch -p ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "ts-node": "^7.0.1"
+  },
   "devDependencies": {
     "@types/jest": "^22.1.1",
     "@types/node": "^9.4.0",
