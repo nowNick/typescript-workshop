@@ -1,23 +1,16 @@
+import { APIError } from '@ws06/model'
+
 export const CREATE_USER_REQUEST = 'CREATE_USER_REQUEST'
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
 export const CREATE_USER_FAILURE = 'CREATE_USER_FAILURE'
 
 type UserId = string
 
-interface User {
+export interface User {
   id: UserId
   email: string
   firstName: string
   lastName: string
-}
-
-interface Success {
-
-}
-
-export interface APIError {
-  code: number
-  message: string
 }
 
 export type UserActions = {
@@ -30,10 +23,4 @@ export type UserActions = {
   CREATE_USER_FAILURE: {
     type: typeof CREATE_USER_FAILURE, payload: APIError
   }
-}
-
-export interface State {
-  loading?: boolean
-  user?: User
-  error?: APIError
 }
