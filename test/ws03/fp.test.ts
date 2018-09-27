@@ -1,4 +1,3 @@
-import { def, get, subject } from '../lazy'
 import { curry, partial } from '@ws03/fp'
 
 const context = describe
@@ -10,57 +9,72 @@ const concat = (a: string, b: string, c: string) => [a, b, c].join(',')
 
 describe('fp', () => {
   describe('curry', () => {
-    subject(() => curry(get('function')))
-
     context('when transforming void function', () => {
-      def('function', () => randomNumberGenerator)
-
-      it('does nothing', () => {
-        expect(subject()).toEqual(get('function')())
+      it.skip('does nothing', () => {
+        const subject = curry(randomNumberGenerator)
+        expect(subject()).toEqual(randomNumberGenerator())
       })
     })
 
     context('when transforming a function with one argument', () => {
-      def('function', () => increment)
-
       it('accepts one argument', () => {
-        expect(subject()(1)).toEqual(get('function')(1))
+        const subject = curry(increment)
+        expect(subject(1)).toEqual(increment(1))
       })
     })
 
     context('when transforming a function with two arguments', () => {
-      def('function', () => sum)
-
       it('accepts single argument twice', () => {
-        expect(subject()(1)(2)).toEqual(get('function')(1, 2))
+        const subject = curry(sum)
+        expect(subject(1)(2)).toEqual(sum(1, 2))
       })
     })
   })
 
-  describe.skip('partial', () => {
-    subject((...args: any[]) => partial(get('function'), ...args))
-
+  describe('partial', () => {
     context('when transforming void function', () => {
-      def('function', () => randomNumberGenerator)
-
       it('does nothing', () => {
-        expect(subject()).toEqual(get('function')())
+        const subject = partial(randomNumberGenerator)
+        expect(subject()).toEqual(randomNumberGenerator())
       })
     })
 
     context('when transforming a function with one argument', () => {
-      def('function', () => increment)
+      context('when providing no arguments', () => {
+        it('accepts one arguments', () => {
+          const subject = partial(increment)
+          expect(subject(1)).toEqual(increment(1))
+        })
+      })
 
-      it('accepts one argument', () => {
-        expect(subject(1)).toEqual(get('function')(1))
+      context('when providing one argument', () => {
+        it('accepts no arguments', () => {
+          const subject = partial(increment, 1)
+          expect(subject()).toEqual(increment(1))
+        })
       })
     })
 
     context('when transforming a function with two arguments', () => {
-      def('function', () => sum)
+      context('when providing no arguments', () => {
+        it('accepts two arguments', () => {
+          const subject = partial(sum)
+          expect(subject(1, 2)).toEqual(sum(1, 2))
+        })
+      })
 
-      it('accepts single argument twice', () => {
-        expect(subject(1)(2)).toEqual(get('function')(1, 2))
+      context('when providing one arguments', () => {
+        it('accepts one argument', () => {
+          const subject = partial(sum, 1)
+          expect(subject(2)).toEqual(sum(1, 2))
+        })
+      })
+
+      context('when providing one arguments', () => {
+        it('accepts single argument twice', () => {
+          const subject = partial(sum, 1, 2)
+          expect(subject()).toEqual(sum(1, 2))
+        })
       })
     })
   })

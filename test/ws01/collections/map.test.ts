@@ -1,5 +1,5 @@
 ///<reference types="jest" />
-import { filter, map, reduce } from '@ws01/collections'
+import { map } from '@ws01/collections'
 import { identity } from '@ws01/collections/common'
 
 const context = describe
@@ -65,67 +65,4 @@ describe('map', () => {
   })
 })
 
-describe('filter', () => {
-  context('when the collection is not empty', () => {
-    context('when filtering numbers', () => {
-      it('filters even numbers', () => {
-        const collection = [1, 1, 2, 3, 5, 8]
-        expect(filter(collection, isEven)).toEqual([2, 8])
-      })
-    })
-  })
 
-  context('when the collection is empty', () => {
-    it('does nothing', () => {
-      expect(filter([], isEven)).toEqual([])
-    })
-  })
-
-  context('when collection is sparse', () => {
-    it('skips empty space', () => {
-      const collection = Array(4)
-      collection[2] = 2
-      const truthy = filter(collection, Boolean)
-      expect(truthy).toEqual([2])
-    })
-
-    it('evaluates empty space as undefined', () => {
-      const collection = Array(4)
-      const falsey = filter(collection, e => !e)
-      expect(falsey).toEqual([undefined, undefined, undefined, undefined])
-    })
-  })
-})
-
-describe('reduce', () => {
-  context('when initial value is not provided', () => {
-    context('when collection is empty', () => {
-      it('fails', () => {
-        expect(() => reduce([], sum)).toThrowError(TypeError)
-      })
-    })
-
-    context('when collection is not empty', () => {
-      it('uses first element as initial value', () => {
-        const collection = [1, 1, 2, 3, 5, 8]
-        expect(reduce(collection, sum)).toEqual(20)
-      })
-    })
-  })
-
-  context('when initial value is provided', () => {
-    context('when collection is empty', () => {
-      it('returns initial value', () => {
-        const initialValue = -1
-        expect(reduce([], sum, initialValue)).toEqual(initialValue)
-      })
-    })
-
-    context('when collection is not empty', () => {
-      it('uses first element as initial value', () => {
-        const collection = [1, 1, 2, 3, 5, 8]
-        expect(reduce(collection, sum, -1)).toEqual(19)
-      })
-    })
-  })
-})

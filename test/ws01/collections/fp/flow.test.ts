@@ -6,7 +6,7 @@ const pow = (n: number) => n * n
 const sum = (a: number, b: number, idx: number) => a + b
 const join = (a: number[], b: number[], idx: number) => ([] as number[]).concat(a).concat(b)
 
-describe('map', () => {
+describe('flow', () => {
   it('maps all values', () => {
     const collection = [1, 1, 2, 3, 5, 8]
     expect(map(pow)(collection)).toEqual([1, 1, 4, 9, 25, 64])

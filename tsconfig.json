@@ -28,6 +28,7 @@
       "*": ["typings"]
     },
     "baseUrl": ".",
+    "outDir": "build",
     "strict": true,
     "noImplicitAny": true,
     "target": "es2016",
