@@ -15,20 +15,20 @@ interface Success {
 
 }
 
-interface APIError {
+export interface APIError {
   code: number
   message: string
 }
 
 export type UserActions = {
   CREATE_USER_REQUEST: {
-    type: typeof CREATE_USER_REQUEST, payload: any
+    type: typeof CREATE_USER_REQUEST, payload: UserId
   },
   CREATE_USER_SUCCESS: {
-    type: typeof CREATE_USER_SUCCESS, payload: any
+    type: typeof CREATE_USER_SUCCESS, payload: User
   },
   CREATE_USER_FAILURE: {
-    type: typeof CREATE_USER_FAILURE, payload: any
+    type: typeof CREATE_USER_FAILURE, payload: APIError
   }
 }
 
@@ -36,15 +36,4 @@ export interface State {
   loading?: boolean
   user?: User
   error?: APIError
-}
-
-export type RootAction =
-  UserActions[keyof UserActions]
-
-export function reduce (action: RootAction, state: State): State {
-  switch (action.type) {
-    case CREATE_USER_REQUEST:
-    case CREATE_USER_SUCCESS:
-    case CREATE_USER_FAILURE:
-  }
 }
