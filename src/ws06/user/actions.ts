@@ -24,3 +24,9 @@ export type UserActions = {
     type: typeof CREATE_USER_FAILURE, payload: APIError
   }
 }
+
+export interface State {
+  loading: boolean
+  user?: User
+  error?: APIError
+}

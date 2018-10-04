@@ -1,35 +1,36 @@
-export interface Action<T = any> {
+export interface Action<T> {
   type: T
 }
 
-export type Reducer = (state: any, action: any) => any
+export type Reducer<S, A extends Action<T>, T> = (state: S, action: A) => S
 
-export interface Dispatch {
-  (action: any): any
+export interface Dispatch<A extends Action<T>, T> {
+  (action: A): A
 }
 
-export interface Store<S> {
-  dispatch: Dispatch
+export interface Store<S, A extends Action<T>, T> {
+  dispatch: Dispatch<A, T>
 
-  getState(): S
+  getState (): S
 }
 
-export function createStore<S>(reducer: Reducer, initialState: S | undefined): Store<S> {
+export function createStore<S, A extends Action<T>, T> (reducer: Reducer<S, A, T>, initialState: S): Store<S, A, T> {
+  let state = initialState
+
   return {
-    dispatch: (action: any) => null,
-    getState: () => initialState as S
+    dispatch: (action: A) => {
+      state = reducer(state, action)
+      return action
+    },
+    getState: () => state
   }
 }
 
-export type ReducersMapObject<S> = {
-  [K in keyof S]: Reducer
+export type ReducersMapObject<S, A extends Action<T>, T> = {
+  [K in keyof S]: Reducer<S[K], A, T>
 }
 
-// export type ReducersMapObject<S, A extends Action> = {
-//   [K in keyof S]: Reducer<S[K], A>
-// }
-
-export function combineReducers<S, A extends Action>(reducers: ReducersMapObject<S>): Reducer {
+export function combineReducers<S, A extends Action<T>, T>(reducers: ReducersMapObject<S, A, T>): Reducer<S, A, T> {
   return (state: S, action: A) => {
     type Key = keyof S
     const keys = Object.keys(state) as Key[]
@@ -37,4 +38,3 @@ export function combineReducers<S, A extends Action>(reducers: ReducersMapObject
     return state
   }
 }
-

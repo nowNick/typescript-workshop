@@ -3,16 +3,16 @@ import { APIError } from '@ws06/model'
 import { CREATE_USER_FAILURE, CREATE_USER_REQUEST, CREATE_USER_SUCCESS, User } from '@ws06/user/actions'
 
 export interface State {
-  loading?: boolean
+  loading: boolean
   user?: User
   error?: APIError
 }
 
-export const initialState: State = {
+export const initialUserState: State = {
   loading: true
 }
 
-export function reduce (state: State = initialState, action: RootAction): State {
+export function reduce (state: State = initialUserState, action: RootAction): State {
   switch (action.type) {
     case CREATE_USER_REQUEST:
       return {
