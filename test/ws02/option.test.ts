@@ -88,10 +88,6 @@ describe('Option', () => {
   })
 
   describe('orElse', () => {
-    subject(() => get('option').orElse(() => get('else')))
-
-    def('else', () => Some('asd'))
-
     context('when option is None', () => {
       it('fall backs', () => {
         const orElse = () => 'asd'
