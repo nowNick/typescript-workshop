@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from 'util'
 import { None as INone, Option as IOption, Some as ISome } from './option.i'
 
 export class _Some<T> implements IOption<T> {
@@ -19,5 +18,6 @@ export const None: INone = {
   isDefined: () => false,
   map: returnNone,
   filter: returnNone,
-  orElse: (alt: Function) => alt()
+  orElse: <T>(alt: () => T) => Option(alt()),
+  isOption: () => true
 }

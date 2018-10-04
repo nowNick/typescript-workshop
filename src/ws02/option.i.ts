@@ -5,9 +5,10 @@ export interface Option<T> {
 
   map<V>(fn: (a: T) => V | null | undefined): Option<V>
   filter(fn: (a: T) => boolean): Option<T>
-  orElse(alternative: () => Option<T>): Option<T>
+  orElse(alternative: () => T): Option<T>
   // getOrElse(alternative: T): T
 
+  isOption: () => true
 }
 
 export interface Some<T> extends Option<T> {

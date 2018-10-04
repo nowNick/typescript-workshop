@@ -21,8 +21,20 @@ export function createStore<S>(reducer: Reducer, initialState: S | undefined): S
   }
 }
 
-// export type ReducersMapObject<S = any, A extends Action = Action> = {
-//   [K in keyof S]: Reducer<S[K], A>;
+export type ReducersMapObject<S> = {
+  [K in keyof S]: Reducer
+}
+
+// export type ReducersMapObject<S, A extends Action> = {
+//   [K in keyof S]: Reducer<S[K], A>
 // }
-// export function combineReducers<S, A extends Action = Action>(reducers: ReducersMapObject<S, A>): Reducer<S, A> {
-// }
+
+export function combineReducers<S, A extends Action>(reducers: ReducersMapObject<S>): Reducer {
+  return (state: S, action: A) => {
+    type Key = keyof S
+    const keys = Object.keys(state) as Key[]
+
+    return state
+  }
+}
+

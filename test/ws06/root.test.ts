@@ -1,6 +1,7 @@
 /// <reference types="jest" />
 import { getStore } from '@ws06/root'
 import { CREATE_USER_REQUEST, CREATE_USER_SUCCESS } from '@ws06/user/actions'
+import { initialState as userState } from '@ws06/user/reducer'
 
 const context = describe
 
@@ -8,7 +9,7 @@ describe('redux', () => {
   it('flows', () => {
     const store = getStore()
 
-    expect(store.getState()).toEqual({})
+    expect(store.getState()).toEqual({user: userState})
 
     store.dispatch({
       type: CREATE_USER_REQUEST,
@@ -16,7 +17,9 @@ describe('redux', () => {
     })
 
     expect(store.getState()).toEqual({
-      loading: true
+      user: {
+        loading: true
+      }
     })
 
     const user = {
@@ -32,8 +35,10 @@ describe('redux', () => {
     })
 
     expect(store.getState()).toEqual({
-      loading: false,
-      user
+      user: {
+        loading: false,
+        user
+      }
     })
   })
 })
