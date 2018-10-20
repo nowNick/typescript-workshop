@@ -112,7 +112,7 @@ describe('Option', () => {
     })
   })
 
-  context.skip('wrapping', () => {
+  context('wrapping', () => { // How to do this?
     it('wraps constructor', () => {
       const value = 'asd'
       const subject = Some(Some(value))
