@@ -57,7 +57,7 @@ const config = (options: Options) => {}
 // config({colour: 'blue', size: 2})
 
 
-const options = {colour: 'blue', size: 2}
+const options = {colour: 'blue', size: 2} // why this works?
 config(options)
 
 /// TS infers the return type of a function

@@ -1,8 +1,9 @@
 export function timesA (n: number, iteratee: Function) {
+  return n === 0 ? [] : [iteratee(n)].concat(timesA(n - 1, iteratee))
 }
 
 export function timesB<T> (n: number, iteratee: (i: number) => T): T[] {
-  return []
+  return timesA(n, iteratee)
 }
 
 
@@ -17,9 +18,18 @@ export function tail<T> (t: T[]): T[] {
 }
 
 export function zip<A, B> (a: A[], b: B[]): [A, B][] {
-  function zipr<A, B> (a: A[], b: B[]): [A, B][] | undefined {
-    return undefined
+  const headA = head(a)
+  const headB = head(b)
+  if(headA === undefined || headB === undefined) {
+    return []
+  } else {
+    const t : [A,B][] = zip(tail(a), tail(b))
+    const h : [A,B] = [headA, headB]
+    if(t === []) {
+      return [h]
+    } else {
+      // return [[headA, headB]].concat(t)  why this doesn't work?
+      return [h].concat(t)
+    }
   }
-
-  return zipr(a, b) || []
 }
