@@ -11,13 +11,9 @@ export function flow<A, B, C, D, E, R> (a: Transform<A, B>, b: Transform<B, C>, 
 export function flow<A, B, C, D, E, F> (
   a: Transform<A, B>, b?: Transform<B, C>, c?: Transform<C, D>, d?: Transform<D, E>, e?: Transform<E, F>
 ): Transform<A, B | C | D | E | F> {
-  // return collection => [a, b, c, d].reduce((acc, e) => {
-  //   return ((e || identity) as any)(acc)
-  // }, collection)
-  return (first: A) => {
-    const t0 = a(first)
-    return t0
-  }
+  return collection => [a, b, c, d].reduce((acc, e) => {
+    return ((e || identity) as any)(acc)
+  }, collection)
 }
 
 interface flow2 {
