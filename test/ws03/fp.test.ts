@@ -10,7 +10,7 @@ const concat = (a: string, b: string, c: string) => [a, b, c].join(',')
 describe('fp', () => {
   describe('curry', () => {
     context('when transforming void function', () => {
-      it.skip('does nothing', () => {
+      it('does nothing', () => {
         const subject = curry(randomNumberGenerator)
         expect(subject()).toEqual(randomNumberGenerator())
       })
