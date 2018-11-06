@@ -15,9 +15,10 @@ export interface Store<S> {
 }
 
 export function createStore<S>(reducer: Reducer, initialState: S | undefined): Store<S> {
+  let freshState = initialState
   return {
-    dispatch: (action: any) => null,
-    getState: () => initialState as S
+    dispatch: (action: any) => freshState = reducer(initialState, action),
+    getState: () => freshState as S
   }
 }
 
@@ -33,8 +34,7 @@ export function combineReducers<S, A extends Action>(reducers: ReducersMapObject
   return (state: S, action: A) => {
     type Key = keyof S
     const keys = Object.keys(state) as Key[]
-
-    return state
+    return keys.reduce((oldState, key) => ({[key]: reducers[key](oldState[key], action)} as any as S), state)
   }
 }
 
